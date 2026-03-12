@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LearnAI — Personalised Learning Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     ONBOARDING SCREEN
+════════════════════════════════════════════════ -->
+<div id="onboarding" class="ob-wrap">
+  <div class="ob-bg"></div>
+  <div class="ob-card" id="ob-card">
+    <div class="ob-dots" id="ob-dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+    <!-- STEP 0 -->
+    <div class="ob-step active" id="ob0">
+      <div class="ob-logo">
+        <div class="logo-glyph">✦</div>
+        <span>Learn<em>AI</em></span>
+      </div>
+      <h1 class="ob-title">Your AI Tutor.<br>Your Pace.</h1>
+      <p class="ob-sub">Adaptive courses, smart quizzes, and a 24/7 AI tutor — all built around how <em>you</em> learn best.</p>
+      <div class="feature-pills">
+        <div class="pill"><span>🧠</span>Adaptive AI</div>
+        <div class="pill"><span>🎯</span>Smart Quizzes</div>
+        <div class="pill"><span>💬</span>AI Tutor Chat</div>
+        <div class="pill"><span>📈</span>Progress Tracking</div>
+        <div class="pill"><span>🏆</span>Leaderboard</div>
+        <div class="pill"><span>🗺</span>Learning Paths</div>
+      </div>
+      <button class="btn-primary full" onclick="nextOb()">Get Started →</button>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="ob-step" id="ob1">
+      <h2 class="ob-title sm">What should we call you?</h2>
+      <p class="ob-sub">Your personalised dashboard awaits</p>
+      <div class="field-group">
+        <label>Your Name</label>
+        <input id="ob-name" class="field" type="text" placeholder="e.g. Alex Johnson" autocomplete="off">
+      </div>
+      <div class="field-group">
+        <label>Email <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+        <input id="ob-email" class="field" type="email" placeholder="you@example.com">
+      </div>
+      <h3 class="pick-title">Pick your topics</h3>
+      <div class="topic-grid">
+        <div class="topic-chip" data-topic="Python"><span>🐍</span>Python</div>
+        <div class="topic-chip" data-topic="JavaScript"><span>🌐</span>JavaScript</div>
+        <div class="topic-chip" data-topic="Machine Learning"><span>🤖</span>Machine Learning</div>
+        <div class="topic-chip" data-topic="Data Science"><span>📊</span>Data Science</div>
+        <div class="topic-chip" data-topic="Web Dev"><span>💻</span>Web Dev</div>
+        <div class="topic-chip" data-topic="Algorithms"><span>🔗</span>Algorithms</div>
+        <div class="topic-chip" data-topic="Math"><span>📐</span>Math</div>
+        <div class="topic-chip" data-topic="Cloud"><span>☁️</span>Cloud</div>
+        <div class="topic-chip" data-topic="Databases"><span>🗄️</span>Databases</div>
+      </div>
+      <div class="ob-btns">
+        <button class="btn-ghost" onclick="prevOb()">← Back</button>
+        <button class="btn-primary" onclick="nextOb()">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="ob-step" id="ob2">
+      <h2 class="ob-title sm">What's your level?</h2>
+      <p class="ob-sub">We'll adjust content difficulty to match</p>
+      <div class="level-cards">
+        <div class="level-card" data-level="Beginner"><div class="lc-icon">🌱</div><div class="lc-name">Beginner</div><div class="lc-desc">Just starting out</div></div>
+        <div class="level-card" data-level="Intermediate"><div class="lc-icon">🔥</div><div class="lc-name">Intermediate</div><div class="lc-desc">Some experience</div></div>
+        <div class="level-card" data-level="Advanced"><div class="lc-icon">⚡</div><div class="lc-name">Advanced</div><div class="lc-desc">Deep expertise</div></div>
+      </div>
+      <div class="ob-btns">
+        <button class="btn-ghost" onclick="prevOb()">← Back</button>
+        <button class="btn-primary" onclick="nextOb()">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="ob-step" id="ob3">
+      <h2 class="ob-title sm">What's your goal?</h2>
+      <p class="ob-sub">We'll tailor your learning path</p>
+      <div class="goal-list">
+        <div class="goal-item" data-goal="Get a new job in tech"><span>💼</span>Get a new job in tech</div>
+        <div class="goal-item" data-goal="Build my own projects"><span>🚀</span>Build my own projects</div>
+        <div class="goal-item" data-goal="Advance in my current role"><span>📈</span>Advance in my current role</div>
+        <div class="goal-item" data-goal="Prepare for interviews"><span>🎯</span>Prepare for interviews</div>
+        <div class="goal-item" data-goal="Learn for fun"><span>🎮</span>Learn for fun & curiosity</div>
+      </div>
+      <button class="btn-primary full" onclick="completeOnboarding()" id="start-btn">🚀 Launch My Dashboard</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     MAIN APP
+════════════════════════════════════════════════ -->
+<div id="app" class="app hidden">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-logo">
+      <div class="logo-glyph sm">✦</div>
+      <span>Learn<em>AI</em></span>
+    </div>
+    <div class="sb-user">
+      <div class="user-av" id="sb-av">A</div>
+      <div>
+        <div class="user-name" id="sb-name">Alex</div>
+        <div class="user-lvl" id="sb-lvl">Level 1 · Novice</div>
+      </div>
+    </div>
+    <div class="sb-xp">
+      <div class="xp-row"><span>XP</span><span id="sb-xp-txt">0 / 500</span></div>
+      <div class="xp-track"><div class="xp-fill" id="sb-xp-fill"></div></div>
+    </div>
+    <nav class="sb-nav">
+      <span class="nav-label">MAIN</span>
+      <a class="nav-item active" data-page="dashboard"><i>🏠</i> Dashboard</a>
+      <a class="nav-item" data-page="courses"><i>📚</i> Courses</a>
+      <a class="nav-item" data-page="quiz"><i>🎯</i> Quiz <em class="badge" id="quiz-badge">5</em></a>
+      <a class="nav-item" data-page="tutor"><i>🤖</i> AI Tutor</a>
+      <span class="nav-label">TRACK</span>
+      <a class="nav-item" data-page="progress"><i>📈</i> Progress</a>
+      <a class="nav-item" data-page="path"><i>🗺</i> Learning Path</a>
+      <a class="nav-item" data-page="leaderboard"><i>🏆</i> Leaderboard</a>
+    </nav>
+    <div class="sb-streak">
+      <div class="streak-num" id="sb-streak">🔥 0</div>
+      <div class="streak-lbl">Day Streak</div>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="main-area">
+    <header class="topbar">
+      <div class="tb-left">
+        <button class="burger" onclick="toggleSidebar()">☰</button>
+        <h2 class="tb-title" id="tb-title">Dashboard</h2>
+      </div>
+      <div class="tb-right">
+        <div class="tb-chip">⚡ <span id="tb-xp">0</span> XP</div>
+        <div class="tb-chip">🔥 <span id="tb-streak">0</span></div>
+        <div class="notif-wrap">
+          <button class="notif-btn" id="notif-btn">🔔</button>
+          <div class="notif-drop" id="notif-drop">
+            <div class="nd-head">Notifications</div>
+            <div class="nd-item unread"><span class="nd-dot"></span><div><p>🎉 Welcome to LearnAI! Start your first lesson.</p><small>Just now</small></div></div>
+            <div class="nd-item unread"><span class="nd-dot"></span><div><p>📊 Your learning path is ready!</p><small>Just now</small></div></div>
+            <div class="nd-item"><span class="nd-dot dim"></span><div><p>Quiz unlocked: Python Basics</p><small>Earlier</small></div></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- PAGE VIEWS -->
+    <div class="pages">
+      <div id="page-dashboard" class="page active"></div>
+      <div id="page-courses"   class="page"></div>
+      <div id="page-quiz"      class="page"></div>
+      <div id="page-tutor"     class="page"></div>
+      <div id="page-progress"  class="page"></div>
+      <div id="page-path"      class="page"></div>
+      <div id="page-leaderboard" class="page"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON MODAL -->
+<div class="modal-bg" id="lesson-modal">
+  <div class="modal-box">
+    <div class="modal-hd">
+      <h3 id="modal-title">Lesson</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<!-- TOASTS -->
+<div id="toasts"></div>
+
+<script src="js/api.js"></script>
+<script src="js/state.js"></script>
+<script src="js/onboarding.js"></script>
+<script src="js/pages.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
